@@ -1,0 +1,25 @@
+
+<table>
+  <tr>
+    <th>AG-Nr.</th>
+    <th>Anrede</th>
+    <th>Firmenname</th>
+    <th>Rechtsform</th>
+  </tr>
+  <tr *ngFor="let ag of arbeitgeber" (click)="selectArbeitgeber(ag)">
+    <td>{{ag.arbeitgeberNr}}</td>
+    <td>{{ag.anredeTyp}}</td>
+    <td>{{ag.firmenname}}</td>
+    <td>{{ag.rechtsformTyp}}</td>
+  </tr>
+</table>
+
+<form #f="ngForm" *ngIf="!!selectedArbeitgeber">
+  <input name="arbeitgeberNr" disabled="true" [ngModel]="selectedArbeitgeber?.arbeitgeberNr">
+  <input name="anredeTyp" disabled="true" [ngModel]="selectedArbeitgeber?.anredeTyp">
+  <input name="firmenname" [disabled]="editMode" [(ngModel)]="selectedArbeitgeber.firmenname">
+  <input name="rechtsformTyp" disabled="true" [ngModel]="selectedArbeitgeber?.rechtsformTyp">
+  <button (click)="switchEdit()">Switch</button>
+  <button (click)="saveSelectedArbeitgeber()">Save</button>
+</form>
+
